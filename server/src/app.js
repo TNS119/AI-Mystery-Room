@@ -20,15 +20,28 @@ app.disable('x-powered-by');
 app.use(helmet());
 
 // CORS configuration
-const allowedOrigins = env.CLIENT_URL.split(',').map((url) => url.trim());
+const rawOrigins = (env.CLIENT_URL || '')
+  .split(',')
+  .map((url) => url.trim().replace(/\/+$/, ''))
+  .filter(Boolean);
+
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow requests with no origin (e.g., mobile apps, curl, server-to-server)
-      if (!origin || allowedOrigins.includes(origin) || env.NODE_ENV === 'development') {
+      // Allow requests with no origin (e.g. mobile apps, curl, server-to-server)
+      if (!origin || env.NODE_ENV === 'development') {
         return callback(null, true);
       }
-      return callback(new Error('Blocked by CORS policy'));
+      const cleanOrigin = origin.replace(/\/+$/, '');
+      if (
+        rawOrigins.includes(cleanOrigin) ||
+        rawOrigins.includes('*') ||
+        cleanOrigin.endsWith('.onrender.com') ||
+        cleanOrigin.endsWith('.vercel.app')
+      ) {
+        return callback(null, true);
+      }
+      return callback(new Error(`Blocked by CORS policy: origin ${origin} not allowed`));
     },
     methods: ['GET', 'POST', 'OPTIONS'],
     credentials: true
@@ -41,7 +54,7 @@ if (env.NODE_ENV !== 'test') {
     pinoHttp({
       logger,
       autoLogging: {
-        ignore: (req) => req.url === '/api/health'
+        ignore: (req) => req.url === '/api/health' || req.url === '/health'
       }
     })
   );
@@ -69,12 +82,15 @@ const generalLimiter = rateLimit({
 });
 
 app.use('/api', generalLimiter);
+app.use(generalLimiter);
 
-// Health check endpoint
+// Health check endpoint (accessible via both /api/health and /health)
 app.use('/api', healthRoutes);
+app.use('/', healthRoutes);
 
-// Cases endpoints
+// Cases endpoints (accessible via both /api/cases and /cases)
 app.use('/api', casesRoutes);
+app.use('/', casesRoutes);
 
 // Fallback 404 handler
 app.use(notFound);

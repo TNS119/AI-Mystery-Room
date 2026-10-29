@@ -20,7 +20,7 @@
 | File Path & Anchor | Line Range | Role & Responsibility | Key Classes / Functions | Invariants & Constraints |
 | :--- | :--- | :--- | :--- | :--- |
 | `server/src/index.js` | `L1–L36` | Bootstrap & server lifecycle | `startServer()` | Graceful shutdown on `SIGINT`/`SIGTERM`. |
-| `server/src/app.js` | `L1–L72` | Express application & middleware setup | `app` | Rate limiting, Helmet, CORS, 10kb body limit. |
+| `server/src/app.js` | `L1–L88` | Express application & middleware setup | `app` | Rate limiting, Helmet, CORS, dual-mounted `/api` and root routes. |
 | `server/src/config/env.js` | `L1–L23` | Zod-validated environment config | `env` | Fail-fast boot validation. |
 | `server/src/config/db.js` | `L1–L27` | MongoDB connection & disconnection | `connectDB()`, `disconnectDB()` | Clean pool teardown. |
 | `server/src/models/Case.js` | `L1–L89` | Mongoose Case schema with TTL | `Case` | `solution` and key clue fields have `select: false`. |
@@ -34,7 +34,7 @@
 | `server/src/middleware/errorHandler.js` | `L1–L64` | Central error handling | `errorHandler()` | Standard JSON error envelope (§9.0). |
 | `server/src/middleware/validate.js` | `L1–L11` | Zod request validation middleware | `validateBody()` | Validates and sanitizes request payloads. |
 | `client/src/App.jsx` | `L1–L36` | SPA route tree & application shell | `App()` | Wraps routes in ErrorBoundary & CaseProvider. |
-| `client/src/api/client.js` | `L1–L50` | Axios API client & error normalizer | `apiService` | 60s timeout for generation, interceptors. |
+| `client/src/api/client.js` | `L1–L61` | Axios API client & error normalizer | `apiService` | Automatic base URL `/api` suffix normalization, 60s generation timeout. |
 | `client/src/context/CaseContext.jsx` | `L1–L123` | Case state & localStorage synchronization | `CaseProvider()`, `useCase()` | Manages investigation progress & active ID. |
 | `client/src/pages/Home.jsx` | `L1–L165` | Precinct entrance & case initiation | `Home()` | Manila dossier cards, case directive styling. |
 | `client/src/pages/CreateMystery.jsx` | `L1–L350` | Case Dispatch & Multi-Genre Selection Matrix | `CreateMystery()` | Non-business genre chips (Arts, Academia, Sports, Heritage, Medical, Transit, Culinary). |
