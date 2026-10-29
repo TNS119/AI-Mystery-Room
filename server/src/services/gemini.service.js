@@ -169,6 +169,7 @@ async function generateMysteryWithAI(premise, difficulty) {
   }
 
   const ai = new GoogleGenAI({ apiKey });
+  const config = DIFFICULTY_CONFIG[difficulty] || DIFFICULTY_CONFIG.medium;
   const systemInstruction = buildSystemInstruction(difficulty, premise);
   const userContent = `Here is the user-supplied premise for the mystery:
 <premise>

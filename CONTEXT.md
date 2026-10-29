@@ -68,6 +68,7 @@
 ## 4. Current State & Active Milestone
 - **Active Focus:** Milestone 14–15 (Production & Deployment Readiness).
 - **Recent Refactors:**
+  - Resolved `ReferenceError: config is not defined` in `server/src/services/gemini.service.js` which caused `500 INTERNAL_ERROR` during case creation.
   - Transitioned all suspect portraits to a **100% synthetic AI-generated character bank** stored in [`client/public/portraits/`](file:///c:/Users/nikhi/Downloads/AI_Mystery_Room/client/public/portraits). Guaranteed zero real persons or likenesses used.
   - Eliminated half-face cropping on suspect polaroids: transitioned `SuspectMugshot.jsx` from landscape height-constrained box (`h-44 sm:h-48`) to 1:1 `aspect-square` with `object-center`.
   - Stacked suspect name and role badge onto separate lines with zero truncation (`truncate` removed), preventing badge collision.
