@@ -40,9 +40,9 @@
 | `client/src/pages/CreateMystery.jsx` | `L1–L350` | Case Dispatch & Multi-Genre Selection Matrix | `CreateMystery()` | Non-business genre chips (Arts, Academia, Sports, Heritage, Medical, Transit, Culinary). |
 | `client/src/pages/InvestigationRoom.jsx` | `L1–L540` | SIT Crime Scene, Timeline & Interrogation Dossier | `InvestigationRoom()` | Balanced 6-col lower stage, auto-scroll to Know the Suspect on clue completion. |
 | `client/src/components/ConnectingBoard.jsx` | `L1–L480` | Crime Wall Evidence Connecting Board | `ConnectingBoard()` | Geometric forensic constellation web figure, polygon seal, Know the Suspect banner. |
-| `client/src/components/SuspectMugshot.jsx` | `L1–L77` | Realistic suspect mugshot polaroid | `SuspectMugshot()` | 1:1 square aspect ratio (`aspect-square`) with centered face positioning (`object-center`), preventing half-face cropping. |
+| `client/src/components/SuspectMugshot.jsx` | `L1–L80` | Realistic suspect mugshot polaroid | `SuspectMugshot()` | 1:1 square aspect ratio (`aspect-square`), centered face framing (`object-center`), and stacked multi-line name + role badge preventing text truncation/overlap. |
 | `client/src/components/EvidenceThumbnail.jsx` | `L1–L175` | Realistic forensic evidence artifact visual | `EvidenceThumbnail()` | WhatsApp chat, CCTV monitor, CDR tower log, UPI slip, Crime photo. |
-| `client/src/utils/suspectImages.js` | `L1–L204` | Dynamic case-scoped Indian model portraits | `getSuspectPortrait()`, `isSuspectFemale()` | Auto `crop=faces` resolution, stateful rotation & seed shuffling ensuring zero repeated faces across consecutive cases. |
+| `client/src/utils/suspectImages.js` | `L1–L190` | 100% Synthetic AI-Generated Indian Character Mugshot Bank | `getSuspectPortrait()`, `isSuspectFemale()` | Purely synthetic, fictional AI portraits in `client/public/portraits/` (zero real human likenesses), with stateful case rotation. |
 | `client/src/components/EvidenceModal.jsx` | `L1–L190` | Realistic forensic evidence viewer | `EvidenceModal()` | WhatsApp chat, CCTV footage, CDR tower log, UPI slips. |
 | `client/src/pages/Accusation.jsx` | `L1–L210` | Formal indictment & interrogation lineup | `Accusation()` | Suspect lineup in responsive grid (`sm:grid-cols-2 xl:grid-cols-3`) with prime suspect stamp and evidence docket. |
 | `client/src/pages/Results.jsx` | `L1–L281` | Final verdict & detective ranking | `Results()` | Sealed vault reveal, rank badges, score ledger. |
@@ -68,7 +68,8 @@
 ## 4. Current State & Active Milestone
 - **Active Focus:** Milestone 14–15 (Production & Deployment Readiness).
 - **Recent Refactors:**
-  - Standardized root directory structure: relocated all loose verification files, videos, and screenshots to `docs/verification/` and updated `.gitignore` for clean production repository layout.
+  - Transitioned all suspect portraits to a **100% synthetic AI-generated character bank** stored in [`client/public/portraits/`](file:///c:/Users/nikhi/Downloads/AI_Mystery_Room/client/public/portraits). Guaranteed zero real persons or likenesses used.
   - Eliminated half-face cropping on suspect polaroids: transitioned `SuspectMugshot.jsx` from landscape height-constrained box (`h-44 sm:h-48`) to 1:1 `aspect-square` with `object-center`.
-  - Added computer-vision facial centering (`crop=faces`) to Unsplash portrait resolution in `suspectImages.js` guaranteeing full face, hair, and collar visibility across all suspects.
+  - Stacked suspect name and role badge onto separate lines with zero truncation (`truncate` removed), preventing badge collision.
+  - Standardized root directory structure, purged all verification media, and updated `.gitignore`.
   - Validated with 23 server unit & integration tests and client test suite.

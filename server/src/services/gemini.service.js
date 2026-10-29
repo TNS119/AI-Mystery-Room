@@ -116,7 +116,10 @@ CRITICAL INVARIANT: MULTI-GENRE NARRATIVE DIVERSITY & PROHIBITION ON COOKIE-CUTT
   8. CORPORATE & FINTECH (ONLY IF EXPLICITLY REQUESTED BY USER PREMISE):
      - Only use corporate buyout or startup equity tropes when the user specifically writes a corporate business prompt!
 
-SUSPECT PROFILES & AUTHENTIC SETTING ROLES:
+SUSPECT PROFILES, NAMING FIDELITY & CHARACTER INVENTION (MANDATORY):
+- STORY-GIVEN CHARACTER NAMES FIDELITY: If the user's premise mentions specific character names (e.g., victim, primary suspects, or witnesses), you MUST incorporate those exact names directly into the story, suspect roster, and clue references.
+- CHARACTER INVENTION: If the premise introduces fewer characters than the required count (${config.suspects} suspects), invent the remaining characters organically. Every invented character MUST have a credible profession, role, and motive intrinsically tied to the crime setting.
+- RELEVANT & AUTHENTIC INDIAN NAMES: Use culturally appropriate, relevant Indian full names (First Name + Last Name, e.g., "Dr. Debabrata Roy", "Meera Ranganathan", "Devendra Rathore", "Prof. Shalini Sen") that authentically reflect the setting's regional and professional milieu. Never use generic or placeholder names.
 - Every suspect MUST have a unique, organic profession and personal relationship specific to the crime setting (e.g., "Chief Sitarist", "Head Archivist", "Lead Batsman", "Botanical Curator", "Resident Astrologer").
 - Suspect descriptions should reveal credible interpersonal friction, distinct personalities, and plausible alibis.
 - Alibis must be specific to the environment (e.g., "Was in the archival vault microfilming 16th-century copper inscriptions", "Was in the sound studio calibrating acoustic baffles").
@@ -172,7 +175,11 @@ async function generateMysteryWithAI(premise, difficulty) {
 ${premise.trim()}
 </premise>
 
-Generate the complete, logically coherent, fair-play whodunit mystery following all specifications for "${difficulty}" difficulty.`;
+Generate the complete, logically coherent, fair-play whodunit mystery following all specifications for "${difficulty}" difficulty.
+CRITICAL INSTRUCTIONS:
+1. If the user-supplied premise mentions specific character names (victim, suspects, or associates), use those exact names in the narrative and suspect roster.
+2. If more characters are needed to satisfy the ${config.suspects} suspects requirement, invent relevant, organic characters with authentic Indian names that fit the crime setting.
+3. Ensure clue texts, WhatsApp transcripts, CCTV logs, and alibis reference these exact character names consistently.`;
 
   const maxRetries = env.AI_MAX_RETRIES || 2;
   const timeoutMs = env.AI_TIMEOUT_MS || 45000;

@@ -51,13 +51,16 @@ export const SuspectMugshot = ({
       {showFullDetails && (
         <div className="pt-3 pb-1 flex-1 flex flex-col justify-between">
           <div>
-            <div className="flex justify-between items-start gap-1 mb-1">
-              <h3 className="font-serif-noir text-sm font-bold text-slate-100 truncate">
+            {/* Suspect Name on own line + Role Badge on next line (Zero Overlap/Truncation) */}
+            <div className="mb-2">
+              <h3 className="font-serif-noir text-sm font-bold text-slate-100 leading-snug">
                 {suspect?.name}
               </h3>
-              <span className="text-[9px] font-mono-dossier px-1.5 py-0.5 rounded bg-slate-800 text-amber-300 border border-slate-700 shrink-0">
-                {suspect?.role}
-              </span>
+              <div className="mt-1">
+                <span className="inline-block text-[9px] font-mono-dossier px-1.5 py-0.5 rounded bg-slate-800 text-amber-300 border border-slate-700 max-w-full">
+                  {suspect?.role}
+                </span>
+              </div>
             </div>
 
             <p className="font-typewriter text-[11px] text-slate-300 leading-snug line-clamp-2 mb-2">
