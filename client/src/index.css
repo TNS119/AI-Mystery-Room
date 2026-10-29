@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+@layer base {
+  html, body, #root {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: #080a0f;
+    color: #e2e8f0;
+  }
+  
+  h1, h2, h3, .font-serif-noir {
+    font-family: 'Cinzel', serif, Georgia;
+  }
+
+  .font-typewriter {
+    font-family: 'Special Elite', 'Courier Prime', monospace;
+  }
+
+  .font-mono-dossier {
+    font-family: 'Courier Prime', monospace;
+  }
+}
+
+/* Atmospheric Mystery Room Canvas & Textures */
+.room-ambient-bg {
+  background: 
+    radial-gradient(circle at 50% 15%, rgba(245, 158, 11, 0.08) 0%, rgba(15, 23, 42, 0) 55%),
+    radial-gradient(circle at 85% 85%, rgba(180, 83, 9, 0.04) 0%, rgba(2, 6, 23, 0) 50%),
+    linear-gradient(180deg, #07090e 0%, #0d1117 50%, #06080d 100%);
+}
+
+.corkboard-texture {
+  background-color: #1a1410;
+  background-image: 
+    radial-gradient(#291e17 15%, transparent 16%), 
+    radial-gradient(#140f0c 15%, transparent 16%);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.85);
+}
+
+.desk-wood-texture {
+  background: 
+    linear-gradient(90deg, rgba(255,255,255,0.01) 0%, rgba(0,0,0,0.2) 50%, rgba(255,255,255,0.01) 100%),
+    linear-gradient(180deg, #131722 0%, #0c1017 100%);
+}
+
+.parchment-card {
+  background: #141720;
+  background-image: radial-gradient(rgba(245, 158, 11, 0.03) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Red Thumbtack Pin */
+.pushpin {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ef4444, #7f1d1d);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.7), inset 0 1px 2px rgba(255, 255, 255, 0.5);
+  position: relative;
+}
+.pushpin::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 6px;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+/* Crime Scene Caution Tape */
+.crime-tape-stripe {
+  background: repeating-linear-gradient(
+    -45deg,
+    #eab308,
+    #eab308 18px,
+    #0f172a 18px,
+    #0f172a 36px
+  );
+}
+
+/* Vintage Rubber Stamps */
+.stamp-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  text-transform: uppercase;
+  font-family: 'Special Elite', monospace;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  border: 2px dashed currentColor;
+  border-radius: 4px;
+  transform: rotate(-3deg);
+  mask-image: radial-gradient(circle, black 80%, rgba(0,0,0,0.7) 100%);
+}
+
+.stamp-danger {
+  color: #ef4444;
+  border-color: #ef4444;
+  background-color: rgba(239, 68, 68, 0.08);
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.15);
+}
+
+.stamp-solved {
+  color: #10b981;
+  border-color: #10b981;
+  background-color: rgba(16, 185, 129, 0.08);
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.15);
+  transform: rotate(2deg);
+}
+
+.stamp-warning {
+  color: #f59e0b;
+  border-color: #f59e0b;
+  background-color: rgba(245, 158, 11, 0.08);
+}
+
+/* Polaroid Photo Styling */
+.polaroid {
+  background: #1e2533;
+  padding: 10px 10px 18px 10px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.polaroid:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(245, 158, 11, 0.15);
+  z-index: 10;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #090d16;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
